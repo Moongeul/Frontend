@@ -1,0 +1,7 @@
+{
+  "name": "moon",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
