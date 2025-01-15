@@ -42,3 +42,27 @@
         @apply text-h5 font-medium leading-3 font-pretendard
     }
 }
+
+@layer components {
+    .deepDarkGray-bottom-button {
+        @apply w-full flex bg-deepDarkGray py-3 button rounded-full items-center justify-center text-white
+    }
+    .white-bottom-button {
+        @apply w-full flex bg-white py-3 button rounded-full items-center justify-center text-black
+    }
+    .brand-bottom-button {
+        @apply w-full flex bg-brandColor py-3 button rounded-full items-center justify-center text-white
+    }
+    .lightGray-bottom-button {
+        @apply w-full flex bg-lightGray py-3 button rounded-full items-center justify-center text-darkGray
+    }
+    .border-lightGray-text-brand-bottom-button {
+        @apply w-full flex bg-white py-3 button rounded-full items-center justify-center text-brandColor border-[1px] border-lightGray
+    }
+    .border-lightGray-text-darkGray-bottom-button {
+        @apply w-full flex bg-white py-3 button rounded-full items-center justify-center text-darkGray border-[1px] border-lightGray
+    }
+    .border-brand-text-black-bottom-button {
+        @apply w-full flex bg-white py-3 button rounded-full items-center justify-center text-black border-[1px] border-brandColor
+    }
+}
