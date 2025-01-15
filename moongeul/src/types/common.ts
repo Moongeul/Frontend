@@ -8,3 +8,8 @@ export interface NavbarContentType {
 }
 
 export type HeaderType = "static" | "dynamic" | "title";
+
+export interface TagType {
+    id: number;
+    tagName: string;
+}
