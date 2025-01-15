@@ -6,3 +6,5 @@ export interface NavbarContentType {
     selectedIcon: (props: SVGProps<SVGSVGElement>) => JSX.Element
     unSelectedIcon: (props: SVGProps<SVGSVGElement>) => JSX.Element
 }
+
+export type HeaderType = "static" | "dynamic" | "title";
