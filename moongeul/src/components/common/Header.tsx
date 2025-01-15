@@ -1,6 +1,6 @@
 import {HeaderType} from "../../types/common";
 import {ReactNode} from "react";
-import BackIcon from "../../assets/common/BackIcon";
+import ArrowIcon from "../../assets/common/ArrowIcon";
 import LOGOIcon from "../../assets/common/LOGOIcon";
 import AlarmIcon from "../../assets/common/AlarmIcon";
 
@@ -9,9 +9,10 @@ interface Props {
     title?: string;
     rightElement?: ReactNode;
     onBack?: () => void;
+    disableBackIcon?: boolean;
 }
 const Header = (props: Props) => {
-    const { headerType = "static", onBack, rightElement, title } = props;
+    const { headerType = "static", onBack, rightElement, title, disableBackIcon = false } = props;
     const renderHeader = () => {
         switch (headerType) {
             case "static":
@@ -34,11 +35,13 @@ const Header = (props: Props) => {
             case "dynamic":
                 return (
                     <div className={"flex justify-between py-2 px-5 bg-backGround items-center"}>
-                        <div
-                            onClick={ onBack }
-                            className={"flex w-[32px] h-[32px] items-center justify-center"}>
-                            <BackIcon />
-                        </div>
+                        {disableBackIcon
+                            ? <div className={"w-[32px] h-[32px]"}/>
+                            : (<div
+                                onClick={onBack}
+                                className={"flex w-[32px] h-[32px] items-center justify-center"}>
+                                <ArrowIcon />
+                            </div>)}
                         <div className={"title5"}>{title}</div>
                         {rightElement ? rightElement : <div className={"w-[32px] h-[32px]"}/>}
                     </div>
