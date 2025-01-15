@@ -48,6 +48,8 @@ import './theme/variables.css';
 import './index.css';
 import Recommend from "./pages/Recommend";
 import Mypage from "./pages/Mypage";
+import Onboarding from "./pages/Onboarding";
+import SignUp from "./pages/SignUp";
 
 setupIonicReact();
 
@@ -70,6 +72,12 @@ const App: React.FC = () => (
           </Route>
           <Route path="/mypage">
             <Mypage />
+          </Route>
+          <Route path="/onboarding">
+            <Onboarding />
+          </Route>
+          <Route path="/sign-up">
+            <SignUp />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
