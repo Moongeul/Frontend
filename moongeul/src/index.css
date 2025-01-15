@@ -1,0 +1,44 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .heading {
+        @apply text-h1 font-bold leading-[33px] font-pretendard
+    }
+    .head {
+        @apply text-h1 font-bold leading-[30.80px] font-pretendard
+    }
+    .title1 {
+        @apply text-h2 font-bold leading-snug font-pretendard
+    }
+    .title2 {
+        @apply text-h2 font-medium leading-snug font-pretendard
+    }
+    .title3 {
+        @apply text-h3 font-medium leading-snug font-pretendard
+    }
+    .title4 {
+        @apply text-h2 font-normal leading-snug font-pretendard
+    }
+    .title5 {
+        @apply text-h3 font-normal leading-[21px] font-pretendard
+    }
+    .body1 {
+        @apply text-h2 font-normal leading-snug font-pretendard
+    }
+    .body2 {
+        @apply text-h3 font-normal leading-snug font-pretendard
+    }
+    .button {
+         @apply text-h3 font-medium leading-snug font-pretendard
+    }
+    .caption1 {
+        @apply text-h4 font-normal leading-[18px] font-pretendard
+    }
+    .caption2 {
+        @apply text-h5 font-medium leading-3 font-pretendard
+    }
+}
