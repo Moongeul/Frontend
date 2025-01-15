@@ -46,6 +46,8 @@ import '@ionic/react/css/palettes/dark.system.css';
 import './theme/variables.css';
 
 import './index.css';
+import Recommend from "./pages/Recommend";
+import Mypage from "./pages/Mypage";
 
 setupIonicReact();
 
@@ -54,17 +56,23 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/tab1">
+          <Route exact path="/home">
             <Home />
           </Route>
-          <Route exact path="/tab2">
+          <Route exact path="/search">
             <Search />
           </Route>
-          <Route path="/tab3">
+          <Route path="/write">
             <Write />
           </Route>
+          <Route path="/recommend">
+            <Recommend />
+          </Route>
+          <Route path="/mypage">
+            <Mypage />
+          </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/home" />
           </Route>
         </IonRouterOutlet>
       </IonTabs>
