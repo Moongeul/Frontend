@@ -1,23 +1,61 @@
+import {useEffect, useState} from "react";
+
+import {InitialTagType, SignUpStepType} from "../../types/sign-up";
+import {tagList} from "../../utils/common/tagList";
+import {createUserTags} from "../../lib/api/sign-up";
 import Header from "../common/Header";
 import Title from "./Title";
-import {tagList} from "../../utils/common/tagList";
 import Tag from "../common/Tag";
 import Button from "../common/Button";
 
 interface Props {
-    setStep: React.Dispatch<React.SetStateAction<string>>
+    setStep: React.Dispatch<React.SetStateAction<SignUpStepType>>
 }
 
 const BookInterestTagPage = (props: Props) => {
     const { setStep } = props;
+    const [initialTag, setInitialTag] = useState<InitialTagType>({
+        tag1: "",
+        tag2: "",
+        tag3: "",
+        tag4: "",
+        tag5: "",
+    });
+    const [selectedTagList, setSelectedTagList] = useState<string[]>([]);
+    const [isTrigger, setIsTrigger] = useState(false);
 
     const onBack = () => {
         setStep("TermsOfUse")
     };
 
-    const onNext = () => {
-        setStep("ProfileSetting")
-    }
+    const mapSelectedTagsToInitialTag = () => {
+        // selectedTagList를 tag1, tag2, ... tag5에 매핑
+        const newTags: InitialTagType = selectedTagList.reduce((acc, tag, index) => {
+            const tagKey = `tag${index + 1}` as keyof InitialTagType; // tag1, tag2, ...
+            acc[tagKey] = tag; // 해당 키에 값을 할당
+            return acc;
+        }, {
+            tag1: "",
+            tag2: "",
+            tag3: "",
+            tag4: "",
+            tag5: "",
+        });
+
+        // 상태 업데이트
+        setIsTrigger(true);
+        setInitialTag(newTags);
+    };
+
+    useEffect(() => {
+        if (initialTag.tag1 !== "" && isTrigger) {
+            createUserTags(initialTag).then((r) => {
+                setInitialTag((prevState) => ({...prevState, tag1: "", tag2: "", tag3: "", tag4: "", tag5: ""}))
+                setStep("ProfileSetting")
+                setIsTrigger(false);
+            })
+        }
+    }, [initialTag]);
 
     return (
         <div>
@@ -33,14 +71,19 @@ const BookInterestTagPage = (props: Props) => {
                 {tagList.map((tag) => {
                     return (
                         <div key={tag.id}>
-                            <Tag>{tag.tagName}</Tag>
+                            <Tag selectedTagList={selectedTagList} setSelectedTagList={setSelectedTagList}>{tag.tagName}</Tag>
                         </div>
                     )
                 })}
             </div>
 
             <div className={"fixed bottom-0 w-full px-5 py-2 bg-backGround"}>
-                <Button className={"deepDarkGray-bottom-button"}>5개 선택하기</Button>
+                <Button
+                    onClick={() => mapSelectedTagsToInitialTag()}
+                    className={selectedTagList.length !== 5 ? "lightGray-bottom-button" : "deepDarkGray-bottom-button"}
+                    disabled={selectedTagList.length !== 5}>
+                    5개 선택하기
+                </Button>
             </div>
         </div>
     );
