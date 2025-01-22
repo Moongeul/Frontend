@@ -1,6 +1,6 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 
 import TermsOfService from "../sign-up/TermsOfService";
 import PersonalInformation from "../sign-up/PersonalInformation";
@@ -8,12 +8,19 @@ import MarketingInformation from "../sign-up/MarketingInformation";
 import UnCheckedIcon from "../../assets/sign-up/UnCheckedIcon";
 import CheckedIcon from "../../assets/sign-up/CheckedIcon";
 import ArrowIcon from "../../assets/common/ArrowIcon";
+import { useAtom } from "jotai";
+import {
+    allOptionsAtom,
+    marketingInformationAtom,
+    personalInformationAtom,
+    termsOfServiceOptionsAtom
+} from "../../store/sign-up/atom";
 
 const TermsOfUseCheckbox = () => {
-    const [allOptions, setAllOptions] = useState(false);
-    const [termsOfServiceOptions, setTermsOfServiceOptions] = useState(false);
-    const [personalInformation, setPersonalInformation] = useState(false);
-    const [marketingInformation, setMarketingInformation] = useState(false);
+    const [allOptions, setAllOptions] = useAtom(allOptionsAtom);
+    const [termsOfServiceOptions, setTermsOfServiceOptions] = useAtom(termsOfServiceOptionsAtom);
+    const [personalInformation, setPersonalInformation] = useAtom(personalInformationAtom);
+    const [marketingInformation, setMarketingInformation] = useAtom(marketingInformationAtom);
 
     const termsOfUseContents = [
         {content: "서비스 이용약관 동의(필수)", component: TermsOfService, state: termsOfServiceOptions, setState: setTermsOfServiceOptions},

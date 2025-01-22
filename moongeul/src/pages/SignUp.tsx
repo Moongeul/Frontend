@@ -6,9 +6,10 @@ import ProfileSetting from "../components/sign-up/ProfileSetting";
 import {getJWTToken, getKaKaoAccessToken} from "../lib/api/onboarding";
 import {useLocation} from "react-router";
 import Cookies from "js-cookie";
+import {SignUpStepType} from "../types/sign-up";
 
 const SignUp = () => {
-    const [step, setStep] = useState("TermsOfUse");
+    const [step, setStep] = useState<SignUpStepType>("TermsOfUse");
     const params = useLocation()
     const [isTrigger, setIsTrigger] = useState(false);
     const router = useIonRouter();
@@ -43,7 +44,6 @@ const SignUp = () => {
         const role = Cookies.get("role");
         if (Cookies.get("role") !== undefined && isTrigger) {
             if (role === "USER" || role === "ADMIN") {
-                console.log("통과되는데");
                 setIsTrigger(false);
                 router.push("/home");
             } else {
@@ -55,7 +55,7 @@ const SignUp = () => {
 
     return (
         <IonPage className={"bg-backGround"}>
-            {step === "TermsOfUse" && (<TermsOfUse />)}
+            {step === "TermsOfUse" && (<TermsOfUse setStep={setStep}/>)}
             {step === "BookInterestTagPage" && (<BookInterestTagPage setStep={setStep}/>)}
             {step === "ProfileSetting" && (<ProfileSetting setStep={setStep}/>)}
         </IonPage>
