@@ -35,7 +35,10 @@ const Input = (props: Props) => {
                         maxLength={maxLength}
                         className={"w-full bg-backGround outline-none"}
                     />
-                    <Button LeftIcon={CancelIcon} />
+                    <Button
+                        LeftIcon={CancelIcon}
+                        onClick={() => {setInputValue("")}
+                    }/>
                 </div>
                 {duplicateCheckButton? duplicateCheckButton() : null}
             </div>
