@@ -26,10 +26,8 @@ const SignUp = () => {
         const code = getQueryValue(params.search)
         if (code && Cookies.get("accessToken") === undefined){
             getKaKaoAccessToken(code).then((r) => {
-                console.log("r", r.access_token)
                 Cookies.set("kakaoAccessToken", r.access_token, { expires: Date.now() + 604800000 });
                 getJWTToken(r.access_token).then((res) => {
-                    console.log("res", res)
                     Cookies.set("accessToken", res.data.tokens.accessToken, { expires: Date.now() + 604800000 });
                     Cookies.set("refreshToken", res.data.tokens.refreshToken, { expires: Date.now() + 604800000 });
                     Cookies.set("role", res.data.role, { expires: Date.now() + 604800000 });
