@@ -1,6 +1,6 @@
 import {sendRequest} from "../axios";
 import Cookies from "js-cookie";
-import {InitialTagType} from "../../types/sign-up";
+import {TagType} from "../../types/sign-up";
 
 /**
  * 마케팅 수신 동의 api
@@ -26,7 +26,7 @@ export const getApproveMarketingMessage = async (approve: "ok" | "no") => {
  * 처음 사용자용 tag 등록 API
  * @param tags 관심있는 태그 5개
  */
-export const createUserTags = async (tags: InitialTagType) => {
+export const createUserTags = async (tags: TagType) => {
     try {
         const response = await sendRequest({
             headers: {

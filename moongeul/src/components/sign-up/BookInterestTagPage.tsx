@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-import {InitialTagType, SignUpStepType} from "../../types/sign-up";
+import {TagType, SignUpStepType} from "../../types/sign-up";
 import {tagList} from "../../utils/common/tagList";
 import {createUserTags} from "../../lib/api/sign-up";
 import Header from "../common/Header";
@@ -14,7 +14,7 @@ interface Props {
 
 const BookInterestTagPage = (props: Props) => {
     const { setStep } = props;
-    const [initialTag, setInitialTag] = useState<InitialTagType>({
+    const [initialTag, setInitialTag] = useState<TagType>({
         tag1: "",
         tag2: "",
         tag3: "",
@@ -30,8 +30,8 @@ const BookInterestTagPage = (props: Props) => {
 
     const mapSelectedTagsToInitialTag = () => {
         // selectedTagList를 tag1, tag2, ... tag5에 매핑
-        const newTags: InitialTagType = selectedTagList.reduce((acc, tag, index) => {
-            const tagKey = `tag${index + 1}` as keyof InitialTagType; // tag1, tag2, ...
+        const newTags: TagType = selectedTagList.reduce((acc, tag, index) => {
+            const tagKey = `tag${index + 1}` as keyof TagType; // tag1, tag2, ...
             acc[tagKey] = tag; // 해당 키에 값을 할당
             return acc;
         }, {

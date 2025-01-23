@@ -1,5 +1,5 @@
 export type SignUpStepType = "TermsOfUse" | "BookInterestTagPage" | "ProfileSetting";
-export interface InitialTagType {
+export interface TagType {
     tag1: string;
     tag2: string;
     tag3: string;
