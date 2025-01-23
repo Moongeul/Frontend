@@ -5,7 +5,7 @@ interface Props {
     onClick?: () => void | Promise<void>;
     RightIcon?: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
     LeftIcon?: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
-    className: string; //index.css 에 선언된 style
+    className?: string; //index.css 에 선언된 style
     secondClassName?: string; //index.css 에서 변경하고 싶은 style
     type?: "button" | "submit" | "reset";
     disabled?: boolean;
