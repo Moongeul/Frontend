@@ -140,7 +140,7 @@ const ProfileSetting = (props: Props) => {
                         type="submit"
                         disabled={!nicknameIsAvailable}
                         className={nicknameIsAvailable ? "deepDarkGray-bottom-button" : "lightGray-bottom-button"}>
-                        설정하기
+                        서비스 시작하기
                     </Button>
                 </div>
             </form>
