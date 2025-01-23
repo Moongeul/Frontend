@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* 특정 페이지 전용 스타일 (예: MyPage) */
+.page-mypage ion-content {
+    --background: #f0f0f0; /* MyPage에만 배경색 적용 */
+}
+
 @layer components {
     .heading {
         @apply text-h1 font-bold leading-[33px] font-pretendard
@@ -44,6 +50,7 @@
 }
 
 @layer components {
+    {/* bottom button 스타일들 */}
     .deepDarkGray-bottom-button {
         @apply w-full flex bg-deepDarkGray py-3 button rounded-full items-center justify-center text-white
     }
@@ -64,5 +71,12 @@
     }
     .border-brand-text-black-bottom-button {
         @apply w-full flex bg-white py-3 button rounded-full items-center justify-center text-black border-[1px] border-brandColor
+    }
+}
+
+@layer components {
+    {/* button 스타일들 */}
+    .bg-black-button {
+        @apply bg-black text-white py-3 px-5 rounded-full button
     }
 }
