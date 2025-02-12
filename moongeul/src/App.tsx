@@ -50,6 +50,8 @@ import Recommend from "./pages/Recommend";
 import Mypage from "./pages/Mypage";
 import Onboarding from "./pages/Onboarding";
 import SignUp from "./pages/SignUp";
+import WishBook from "./pages/WishBook";
+import ReadBook from "./pages/ReadBook";
 
 setupIonicReact();
 
@@ -78,6 +80,12 @@ const App: React.FC = () => (
           </Route>
           <Route path="/sign-up">
             <SignUp />
+          </Route>
+          <Route path="/mypage/wish">
+            <WishBook />
+          </Route>
+          <Route path="/mypage/read">
+            <ReadBook />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
