@@ -1,11 +1,13 @@
 import Button from "./Button";
 import CancelIcon from "../../assets/sign-up/CancelIcon";
+import {twMerge} from "tailwind-merge";
 
 interface Props {
     title?: string;
     maxLength?: number;
     inputClassName?: string;
     inputValue: string;
+    placeholder?: string;
     setInputValue:  React.Dispatch<React.SetStateAction<string>>;
     LeftIcon?: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
     duplicateCheckButton?: () => JSX.Element;
@@ -14,7 +16,7 @@ interface Props {
 }
 
 const Input = (props: Props) => {
-    const { title, maxLength, inputClassName, inputValue, setInputValue, LeftIcon, duplicateCheckButton, nicknameIsAvailable, setNicknameIsAvailable } =  props;
+    const { title, maxLength, inputClassName, inputValue, placeholder, setInputValue, LeftIcon, duplicateCheckButton, nicknameIsAvailable, setNicknameIsAvailable } =  props;
 
     return (
         <div className={"flex flex-col gap-y-1 w-full"}>
@@ -25,20 +27,23 @@ const Input = (props: Props) => {
             </div>
 
             <div className={"flex gap-x-1"}>
-                <div className={"flex gap-x-1 p-4 rounded-full border border-lightGray title3 bg-backGround w-[72%]"}>
+                <div className={twMerge("flex gap-x-1 p-4 rounded-full border border-lightGray title3 bg-backGround w-[72%]", inputClassName)}>
                     {LeftIcon ? <LeftIcon /> : null}
                     <input
+                        placeholder={placeholder}
                         onChange={(e) => {
                             setNicknameIsAvailable ? setNicknameIsAvailable(undefined) : null; //중복체크를 했는데, 닉네임을 바꾼 경우
                             setInputValue(e.target.value);
                         }}
                         maxLength={maxLength}
-                        className={"w-full bg-backGround outline-none"}
+                        className={"w-full bg-backGround outline-none placeholder:title5 placeholder:text-darkGray"}
                     />
-                    <Button
-                        LeftIcon={CancelIcon}
-                        onClick={() => {setInputValue("")}
-                    }/>
+                    {duplicateCheckButton && (
+                        <Button
+                            LeftIcon={CancelIcon}
+                            onClick={() => {setInputValue("")}
+                            }/>
+                    )}
                 </div>
                 {duplicateCheckButton? duplicateCheckButton() : null}
             </div>
