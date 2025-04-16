@@ -1,16 +1,11 @@
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
-  IonIcon,
-  IonLabel,
   IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
   IonTabs,
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Write from './pages/Write';
@@ -50,6 +45,7 @@ import Recommend from "./pages/Recommend";
 import Mypage from "./pages/Mypage";
 import Onboarding from "./pages/Onboarding";
 import SignUp from "./pages/SignUp";
+import Follow from "./pages/Follow";
 import WishBook from "./pages/WishBook";
 import ReadBook from "./pages/ReadBook";
 
@@ -80,6 +76,9 @@ const App: React.FC = () => (
           </Route>
           <Route path="/sign-up">
             <SignUp />
+          </Route>
+          <Route path="/mypage/follow">
+            <Follow />
           </Route>
           <Route path="/mypage/wish">
             <WishBook />

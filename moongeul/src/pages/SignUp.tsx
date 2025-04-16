@@ -12,7 +12,9 @@ const SignUp = () => {
     const [step, setStep] = useState<SignUpStepType>("TermsOfUse");
     const params = useLocation()
     const [isTrigger, setIsTrigger] = useState(false);
+    const [isFetching, setIsFetching] = useState(false);
     const router = useIonRouter();
+
 
     function getQueryValue(queryString: string) {
         const index = queryString.indexOf('=');
@@ -24,23 +26,27 @@ const SignUp = () => {
 
     useEffect(() => {
         const code = getQueryValue(params.search)
-        if (code && Cookies.get("accessToken") === undefined){
+        if (code && !isFetching && !Cookies.get("accessToken") && !Cookies.get("kakaoAccessToken")){
+            setIsFetching(true); // 요청 시작
             getKaKaoAccessToken(code).then((r) => {
                 Cookies.set("kakaoAccessToken", r.access_token, { expires: Date.now() + 604800000 });
+                console.log("r.access_token", r.access_token)
                 getJWTToken(r.access_token).then((res) => {
                     Cookies.set("accessToken", res.data.tokens.accessToken, { expires: Date.now() + 604800000 });
                     Cookies.set("refreshToken", res.data.tokens.refreshToken, { expires: Date.now() + 604800000 });
                     Cookies.set("role", res.data.role, { expires: Date.now() + 604800000 });
                     setIsTrigger(true);
+                    setIsFetching(false); // 요청 완료
                 })
-            })
+            }).catch(() => {
+                setIsFetching(false); // 오류 발생 시 플래그 초기화
+            });
         }
-    }, [])
-
+    }, [params.search])
 
     useEffect(() => {
         const role = Cookies.get("role");
-        if (Cookies.get("role") !== undefined && isTrigger) {
+        if (role && isTrigger) {
             if (role === "USER" || role === "ADMIN") {
                 setIsTrigger(false);
                 router.push("/home");
@@ -49,7 +55,7 @@ const SignUp = () => {
                 router.push("/sign-up");
             }
         }
-    }, [Cookies.get("role"), isTrigger]);
+    }, [isTrigger]);
 
     return (
         <IonPage className={"bg-backGround"}>

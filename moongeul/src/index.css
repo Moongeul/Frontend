@@ -7,7 +7,7 @@
 
 /* 특정 페이지 전용 스타일 (예: MyPage) */
 .page-mypage ion-content {
-    --background: #f0f0f0; /* MyPage에만 배경색 적용 */
+    --background: #ECECEC; /* MyPage에만 배경색 적용 */
 }
 
 @layer components {

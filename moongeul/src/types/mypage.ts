@@ -1,5 +1,4 @@
 import {TagType} from "./sign-up";
-import {ResponseType} from "./common";
 
 export interface UserInfoType {
     id: number;
@@ -19,4 +18,10 @@ export interface InfoOpenType {
     contentOpen: boolean;
     commentOpen: boolean;
     likeOpen: boolean;
+}
+
+export interface FollowType {
+    id: number;
+    nickname: string;
+    imageUrl: string;
 }

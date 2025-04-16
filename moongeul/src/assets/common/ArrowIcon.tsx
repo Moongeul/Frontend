@@ -10,7 +10,7 @@ interface BackIconProps extends SVGProps<SVGSVGElement> {
 
 const ArrowIcon = ({
                        direction = "left",
-                       size = 20, // 기본 크기
+                       size = 12, // 기본 크기
                        color = "#000", // 기본값
                        strokeWidth = 1,
                        ...props
@@ -23,8 +23,8 @@ const ArrowIcon = ({
         <svg
             xmlns="http://www.w3.org/2000/svg"
             width={size}
-            height={size * (20 / 10)}
-            viewBox="0 0 10 20" // 원본 크기 설정
+            height={size * (20 / 11)}
+            viewBox="0 0 11 20" // 원본 크기 설정
             fill="none"
             transform={rotation} // 방향에 따라 회전 적용
             {...props}
